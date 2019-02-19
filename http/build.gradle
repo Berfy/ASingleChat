@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.config['compileSdkVersion']
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.config.minSdkVersion
+        targetSdkVersion rootProject.ext.config.targetSdkVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+                // 生成多个版本的so文件
+                arguments "-DANDROID_STL=c++_shared"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.dependencies['appcompat-v7']
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+}
+
+//task to delete the old jar
+task deleteOldJar(type: Delete) {
+    delete 'release/httpSdk.jar'
+}
+
+//task to export contents as jar
+//task exportJar(type: Copy) {
+//    from('build/intermediates/intermediate-jars/release/')
+//    into('release/')
+//    include('classes.jar')
+//    ///Rename the jar
+//    rename('classes.jar', 'httpSdk.jar')
+//}
+//
+//exportJar.dependsOn(deleteOldJar, build)
+//dependsOn 可根据实际需要增加或更改
+
+task makeJar(type: proguard.gradle.ProGuardTask, dependsOn: "build") {
+    // 未混淆的jar路径
+    injars 'build/intermediates/packaged-classes/release/classes.jar'
+    // 混淆后的jar输出路径
+    outjars 'build/outputs/httpSDK.jar'
+    // 混淆协议
+    configuration 'proguard-rules.pro'
+}

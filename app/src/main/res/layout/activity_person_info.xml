@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_f9f9f9">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_66"
+        android:orientation="horizontal"
+        android:background="@color/white_normal">
+
+        <cn.berfy.sdk.mvpbase.view.CircleImageView
+            android:id="@+id/iv_circle_head"
+            android:layout_width="@dimen/space_46"
+            android:layout_height="@dimen/space_46"
+            app:border_color="@color/transparent"
+            android:layout_marginLeft="@dimen/space_12"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/placeholder"/>
+
+        <TextView
+            android:id="@+id/tv_nick_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_14"
+            android:layout_gravity="center_vertical"
+            android:text="@string/nick_name"
+            android:textSize="@dimen/font_14"
+            android:textColor="@color/color_4a4a4a"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_note"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_42"
+        android:orientation="horizontal"
+        android:background="@color/white_normal"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/space_15"
+        android:paddingRight="@dimen/space_15"
+        android:layout_marginTop="@dimen/space_2">
+
+        <TextView
+            android:id="@+id/tv_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_4a4a4a"
+            android:textSize="@dimen/font_14"
+            android:text="@string/labels"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/space_1"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="@dimen/space_14"
+            android:layout_height="@dimen/space_14"
+            android:src="@drawable/note_more"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_send_message"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_42"
+        android:textColor="@color/color_4a4a4a"
+        android:textSize="@dimen/font_14"
+        android:text="@string/send_message"
+        android:paddingLeft="@dimen/space_15"
+        android:gravity="center"
+        android:background="@color/white_normal"
+        android:layout_marginTop="@dimen/space_6"/>
+
+    <TextView
+        android:id="@+id/tv_delete_friend"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_42"
+        android:textColor="@color/color_4a4a4a"
+        android:textSize="@dimen/font_14"
+        android:text="@string/delete_friend"
+        android:paddingLeft="@dimen/space_15"
+        android:gravity="center"
+        android:background="@color/white_normal"
+        android:layout_marginTop="@dimen/space_6"/>
+
+</LinearLayout>

@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">mvpbase</string>
+    <!-- 语音 -->
+    <string name="up_for_cancel">手指上滑，取消发送</string>
+    <string name="want_to_cancle">松开手指，取消发送</string>
+    <string name="time_too_short">录音时间过短</string>
+    <string name="release_cancel">松开取消</string>
+    <string name="long_click_record">按住说话</string>
+    <string name="empty_distance">安全区外</string>
+    <string name="focus_success">关注成功</string>
+    <string name="focus_fail">关注失败</string>
+    <string name="focus_cancel">已取消关注</string>
+    <string name="focus_cancel_fail">取消关注失败</string>
+    <string name="upload">上传</string>
+
+
+    <!--通用-->
+    <string name="tip">"温馨提示</string>
+    <string name="ok">"确定</string>
+    <string name="cancel">"取消</string>
+    <string name="no_net">网络繁忙，请稍后再试</string>
+    <string name="no_data">暂无相关内容</string>
+    <string name="no_data1">暂无数据</string>
+    <string name="http_no_data">服务器请求失败</string>
+    <string name="http_no_more_data">没有更多内容了</string>
+    <string name="http_do_error">操作失败</string>
+    <string name="RET_CODE_ROBBED_LOGIN">检测到您的账号在其他设备使用，是否重新登录</string>
+    <string name="Do_you_want_to_give_up_unsaved_changes">你要放弃未保存的修改吗？</string>
+    <string name="Do_you_want_to_give_up_unsaved_state">取消发布会清空您输入的内容，是否取消？</string>
+    <string name="l_confirm_dialog_title">提示</string>
+    <string name="l_confirm_dialog_message">您确定要放弃本次选择的图片吗?</string>
+
+    <!--图库查看和选择器-->
+    <string name="ps_lib_name">图库选择器</string>
+    <string name="sure">确定</string>
+    <string name="finish">完成</string>
+    <string name="confirm">确认</string>
+    <string name="l_album_name_all">最近图片</string>
+    <string name="l_album_name_selected">选择图片</string>
+    <string name="l_album_name_camera">相机</string>
+    <string name="l_album_name_download">下载</string>
+    <string name="l_album_name_screen_shot">屏幕截图</string>
+    <string name="Reminder">温馨提示</string>
+    <string name="Cut_pictures">裁剪图片</string>
+    <string name="ps_max_count_tips">你最多只能选择%1$s张照片</string>
+    <string name="ps_permision_tip">获取照片需要使用相机和内存读写权限</string>
+    <string name="ps_select_pic_tip">请您至少选择一张图片</string>
+    <string name="avatar_upload">头像上传中</string>
+    <string name="id_upload">截图上传中</string>
+    <string name="logo_upload">队标上传中</string>
+    <string name="upload_successfully">上传成功</string>
+    <string name="camera">相机</string>
+    <string name="Local_album">本地相册</string>
+    <string name="send_success">发送成功</string>
+    <string name="Files_that_have_not_been_uploaded_will_be_deleted">未完成上传的文件将会被删除</string>
+    <!--refresh_refreshing-->
+    <string name="tip_no_data">暂无相关内容</string>
+    <string name="tip_refresh_state_refreshing">正在刷新</string>
+    <string name="tip_refresh_state_pull_to_refresh">下拉刷新</string>
+    <string name="tip_refresh_state_release_to_refresh">松开刷新</string>
+</resources>

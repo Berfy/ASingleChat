@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/chat_room_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_EFEFF1">
+
+    <cn.polaris.mqttuikit.view.ChatInput
+        android:id="@+id/im_input_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <ListView
+        android:id="@+id/im_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/im_input_panel"
+        android:divider="@null"
+        android:scrollbars="none"/>
+
+    <cn.polaris.mqttuikit.view.VoiceSendingView
+        android:id="@+id/im_voice_sending"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

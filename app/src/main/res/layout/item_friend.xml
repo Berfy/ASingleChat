@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_66"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/color_white">
+
+        <cn.berfy.sdk.mvpbase.view.CircleImageView
+            android:id="@+id/iv_friend_head"
+            android:layout_width="@dimen/space_47"
+            android:layout_height="@dimen/space_47"
+            android:layout_marginLeft="@dimen/space_12"
+            app:border_color="@color/transparent"
+            android:src="@drawable/placeholder"/>
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_18"
+            android:textSize="@dimen/font_14"
+            android:textColor="@color/color_4a4a4a"
+            android:text="品电影吃电影尝电影"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/space_1"
+            android:layout_weight="1"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_pass"
+                android:layout_width="@dimen/space_60"
+                android:layout_height="@dimen/space_30"
+                android:layout_marginRight="@dimen/space_15"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_14"
+                android:gravity="center"
+                android:text="@string/pass"
+                android:background="@drawable/pass_bg"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/tv_already_pass"
+                android:layout_width="@dimen/space_60"
+                android:layout_height="@dimen/space_30"
+                android:layout_marginRight="@dimen/space_15"
+                android:textColor="@color/color_DDDDDD"
+                android:textSize="@dimen/font_14"
+                android:gravity="center"
+                android:text="@string/already_pass"
+                android:background="@drawable/already_pass_bg"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_2"
+        android:layout_marginLeft="@dimen/space_12"
+        android:background="@color/color_f9f9f9"/>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="cn.zcgames.sdk.mqttsdk.message.activity.IMTestActivity">
+
+    <Button
+            android:id="@+id/btn_add_conversation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="增加会话"
+            tools:ignore="MissingConstraints"/>
+
+    <Button
+            android:id="@+id/btn_del_conversation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="删除会话"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_conversation"/>
+
+    <Button
+            android:id="@+id/btn_add_conversations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/btn_del_conversation"
+            android:text="批量增加会话100条"/>
+    <Button
+            android:id="@+id/btn_clear_conversations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_conversations"
+            android:text="清空会话"/>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="cn.zcgames.sdk.im">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 用于开启应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.VIBRATE"/> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.CAMERA"/> <!-- 摄像头权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus"/> <!-- 自动聚焦权限 -->
+
+    <application
+            android:name="cn.zcgames.sdk.mqttsdk.app.MyApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:replace="android:label">
+
+
+        <activity android:name="cn.zcgames.sdk.mqttsdk.home.view.activity.SplashActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.LoginActivity"
+                  android:screenOrientation="portrait"
+                  android:launchMode="singleTask"/>
+
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.home.view.activity.MainActivity"
+                android:screenOrientation="portrait"
+                android:launchMode="singleTask">
+        </activity>
+
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.message.activity.DemoMQTTActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.message.activity.DemoIMConnectActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.message.activity.DemoIMDBActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.RegisterActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+
+        <!--<activity android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.LoginActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:windowSoftInputMode="stateAlwaysHidden|adjustPan">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.VIEW" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.PersonInfoActivity"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.LabelsActivity"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.message.activity.NewFriendsActivity"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.message.activity.GroupListActivity"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+
+
+        <!--消息列表-->
+        <activity
+                android:name="cn.zcgames.sdk.mqttsdk.message.activity.MessageActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden|adjustResize"/>
+
+        <activity
+            android:name="cn.zcgames.sdk.mqttsdk.message.activity.ChatActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"/>
+
+        <!--添加朋友-->
+        <activity android:name="cn.zcgames.sdk.mqttsdk.contacts.view.activity.AddFriendActivity"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name="cn.zcgames.sdk.mqttsdk.message.activity.IMTestActivity"
+                  android:screenOrientation="portrait"/>
+        <!--修改昵称-->
+        <activity android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.ModifyNickActivity"
+                  android:screenOrientation="portrait"/>
+        <!--修改头像-->
+        <activity android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.ModifyAvatorActivity"
+                  android:screenOrientation="portrait"/>
+        <!--我的二维码-->
+        <activity android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.MySconCodeActivity"
+                  android:screenOrientation="portrait"/>
+        <!--图片裁剪-->
+        <activity android:name="cn.zcgames.sdk.mqttsdk.personal.view.activity.CropActivity"
+                  android:screenOrientation="portrait"/>
+        <!--群聊成员-->
+        <activity android:name="cn.zcgames.sdk.mqttsdk.contacts.view.activity.GroupChatActivity"
+                  android:screenOrientation="portrait"/>
+        <!--扫码-->
+        <activity android:name="cn.zcgames.sdk.mqttsdk.zxing.decode.CaptureActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!-- android7.0以上需要目录权限 -->
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="cn.berfy.sdk.chat.fileproviders"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_path"/>
+        </provider>
+
+        <meta-data
+                android:name="IM_APPID"
+                android:value="1234567890"/>
+
+    </application>
+
+</manifest>

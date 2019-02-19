@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/voice_background">
+    <!--正在录音的布局-->
+    <RelativeLayout
+        android:id="@+id/voice_rlt"
+        android:layout_width="@dimen/space_151"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/voice_iv"
+            android:layout_width="@dimen/space_104"
+            android:layout_height="@dimen/space_69"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/space_35"
+            android:contentDescription="@null"
+            android:src="@drawable/voice_1"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/space_30"
+            android:text=""
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/font_60" />
+
+        <TextView
+            android:id="@+id/dm_tv_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/voice_iv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_5"
+            android:layout_marginRight="@dimen/space_5"
+            android:layout_marginTop="@dimen/space_10"
+            android:gravity="center"
+            android:text="手指上滑，取消发送"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_14"
+            android:visibility="visible" />
+    </RelativeLayout>
+    <!--录音太短和取消布局-->
+    <RelativeLayout
+        android:id="@+id/voice_rlt2"
+        android:layout_width="@dimen/space_151"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/cancel_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/space_30"
+            android:contentDescription="@null"
+            android:src="@drawable/voice_cancel" />
+        <!--android:background="@drawable/voice_text_background"-->
+        <TextView
+            android:id="@+id/dm_tv_txt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cancel_iv"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_5"
+            android:layout_marginRight="@dimen/space_5"
+            android:layout_marginTop="@dimen/space_10"
+            android:gravity="center"
+            android:text="手指上滑，取消发送"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_14"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.berfy.sdk.mvpbase.view.SwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                           xmlns:tools="http://schemas.android.com/tools"
+                                           android:id="@+id/swipeItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/ll_item_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_81"
+        android:background="@color/white_normal"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/space_12"
+            android:orientation="horizontal">
+
+            <cn.berfy.sdk.mvpbase.view.CircleImageView
+                android:id="@+id/im_avatar"
+                android:layout_width="@dimen/space_52"
+                android:layout_height="@dimen/space_52"
+                android:layout_marginTop="@dimen/space_12"
+                android:src="@drawable/placeholder" />
+
+            <FrameLayout
+                android:id="@+id/chat_room_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/im_avatar"
+                android:layout_alignEnd="@id/im_avatar"
+                android:layout_below="@id/im_avatar"
+                android:layout_marginTop="-8dp"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="@dimen/space_42"
+                    android:layout_height="@dimen/space_12"
+                    android:layout_gravity="center"
+                    android:src="@drawable/chat_room_icon"
+                    android:contentDescription="@null"/>
+            </FrameLayout>
+
+
+
+
+            <TextView
+                android:id="@+id/im_unread_num"
+                android:layout_width="@dimen/space_15"
+                android:layout_height="@dimen/space_15"
+                android:layout_alignTop="@id/im_avatar"
+                android:layout_marginStart="@dimen/space_33"
+                android:background="@drawable/red_point"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/white_normal"
+                android:textSize="@dimen/font_10"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/im_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_12"
+                android:layout_marginTop="@dimen/space_18"
+                android:layout_toEndOf="@id/im_avatar"
+                android:gravity="center"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/color_4a4a4a"
+                android:textSize="@dimen/font_14"
+                tools:ignore="RelativeOverlap"/>
+
+            <LinearLayout
+                android:id="@+id/ll_label_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/im_tv_name"
+                android:layout_below="@id/im_tv_name"
+                android:layout_marginTop="@dimen/space_6"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/im_tv_fans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_13"
+                    android:background="@drawable/fans"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/white_normal"
+                    android:textSize="@dimen/font_7" />
+
+                <TextView
+                    android:id="@+id/im_tv_sex_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_13"
+                    android:layout_marginStart="@dimen/space_4"
+                    android:background="@drawable/shape_chat_label_bg"
+                    android:drawablePadding="@dimen/space_2"
+                    android:drawableStart="@drawable/common_gender_female"
+                    android:gravity="center_vertical"
+                    android:minWidth="@dimen/space_12"
+                    android:paddingEnd="@dimen/space_7"
+                    android:paddingStart="@dimen/space_7"
+                    android:text="26"
+                    android:textColor="@color/white_normal"
+                    android:textSize="@dimen/font_7" />
+
+                <TextView
+                    android:id="@+id/im_tv_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_13"
+                    android:layout_marginStart="@dimen/space_4"
+                    android:background="@drawable/shape_chat_label_bg"
+                    android:gravity="center"
+                    android:minWidth="@dimen/space_28"
+                    android:paddingEnd="@dimen/space_7"
+                    android:paddingStart="@dimen/space_7"
+                    android:text="日本"
+                    android:textColor="@color/white_normal"
+                    android:textSize="@dimen/font_7" />
+
+                <TextView
+                    android:id="@+id/im_tv_profession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_13"
+                    android:layout_marginStart="@dimen/space_4"
+                    android:background="@drawable/shape_chat_label_bg"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/space_7"
+                    android:paddingStart="@dimen/space_7"
+                    android:text="模特"
+                    android:textColor="@color/white_normal"
+                    android:textSize="@dimen/font_7" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/im_last_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/im_tv_name"
+                android:layout_alignStart="@id/im_tv_name"
+                android:layout_marginTop="@dimen/space_8"
+                android:gravity="start|center_vertical"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/color_b7b7b7"
+                android:textSize="@dimen/font_12" />
+
+            <TextView
+                android:id="@+id/im_message_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/space_16"
+                android:layout_marginTop="@dimen/space_16"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/font_11" />
+
+            <ImageView
+                android:id="@+id/im_iv_not_notify"
+                android:layout_width="@dimen/space_26"
+                android:layout_height="@dimen/space_26"
+                android:layout_marginEnd="@dimen/space_15"
+                android:layout_marginTop="@dimen/space_12"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/im_message_time"
+                android:src="@drawable/im_ic_group_not_notify"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_1"
+            android:background="@color/color_f5f5f5" />
+    </LinearLayout>
+
+    <!--删除按钮-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="@dimen/space_62"
+            android:layout_height="match_parent"
+            android:background="@color/im_btn_delete"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/white_normal"
+            android:textSize="@dimen/font_18" />
+    </LinearLayout>
+</cn.berfy.sdk.mvpbase.view.SwipeItemLayout>

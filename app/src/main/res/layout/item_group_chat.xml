@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_white">
+
+    <LinearLayout
+        android:id="@+id/ll_group"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_76"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/space_12"
+        android:paddingLeft="@dimen/space_12"
+        android:background="@color/color_white">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <cn.berfy.sdk.mvpbase.view.CircleImageView
+                android:id="@+id/iv_group_head"
+                android:layout_width="@dimen/space_47"
+                android:layout_height="@dimen/space_47"
+                app:border_color="@color/color_7c58ff"
+                app:border_width="@dimen/space_1"
+                android:src="@drawable/placeholder"/>
+
+            <ImageView
+                android:layout_width="@dimen/space_42"
+                android:layout_height="@dimen/space_12"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/chat_room_icon"
+                android:layout_below="@id/iv_group_head"
+                android:layout_marginTop="-6dp"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_group_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_18"
+            android:textSize="@dimen/font_14"
+            android:textColor="@color/color_4a4a4a"
+            android:text="品电影吃电影尝电影"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/space_1"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_2"
+        android:layout_marginLeft="@dimen/space_12"
+        android:background="@color/color_f9f9f9"/>
+
+</LinearLayout>

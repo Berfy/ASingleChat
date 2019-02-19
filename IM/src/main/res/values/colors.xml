@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!--IM ui-->
+    <color name="im_background">#F9F7F8</color>
+    <color name="im_background_gray1">#EBEBEB</color>
+    <color name="im_background_gray2">#E6E6E6</color>
+    <color name="im_background_gray3">#D4D4D4</color>
+    <color name="im_background_gray4">#EFEFF4</color>
+    <color name="im_line">#DDDDDD</color>
+    <color name="im_line_btn">#BBBBBB</color>
+    <color name="im_text_gray1">#777777</color>
+    <color name="im_text_gray2">#767676</color>
+    <color name="im_text_blue1">#1173CB</color>
+    <color name="im_text_blue2">#1173CA</color>
+    <color name="im_panel_black">#25272A</color>
+    <color name="im_white">#FFFFFF</color>
+    <color name="im_black">#000000</color>
+    <color name="im_btn_red">#D63F41</color>
+    <color name="im_btn_delete">#EB6159</color>
+    <color name="im_btn_red_hover">#E8484B</color>
+    <color name="im_btn_blue">#0F73CB</color>
+    <color name="im_btn_blue_hover">#1E86E4</color>
+    <color name="im_btn_text">#FFFFFF</color>
+    <color name="im_btn_text_hover">#CCFFFFFF</color>
+    <color name="color_272636">#272636</color>
+    <color name="color_FDD0E7">#FDD0E7</color>
+    <color name="color_443d20">#443d20</color>
+    <!--蒙版-->
+    <color name="im_colorMask">#66000000</color>
+</resources>

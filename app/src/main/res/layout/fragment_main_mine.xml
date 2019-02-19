@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f9f9f9"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_97"
+        android:background="@color/color_ffffff">
+
+        <cn.berfy.sdk.mvpbase.view.CircleImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/space_52"
+            android:layout_height="@dimen/space_52"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_20"
+            android:src="@drawable/placeholder" />
+
+        <TextView
+            android:id="@+id/tv_nick"
+            android:layout_width="@dimen/space_150"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_13"
+            android:layout_marginTop="@dimen/space_31"
+            android:layout_toRightOf="@+id/iv_head"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="aaaaaaaaa"
+            android:textColor="@color/color_4a4a4a" />
+
+        <ImageView
+            android:id="@+id/iv_modify_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/space_15"
+            android:src="@drawable/next_icon" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_my_code"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_marginTop="@dimen/space_6"
+        android:background="@color/color_ffffff"
+        android:drawableRight="@drawable/next_icon"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingRight="@dimen/space_15"
+        android:text="@string/my_scan_code"
+        android:textColor="@color/color_4a4a4a" />
+
+    <TextView
+            android:id="@+id/tv_logout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_50"
+            android:background="@color/color_ffffff"
+            android:layout_marginTop="@dimen/space_20"
+            android:gravity="center"
+            android:text="@string/logout"
+            android:textColor="@color/color_4a4a4a" />
+</LinearLayout>

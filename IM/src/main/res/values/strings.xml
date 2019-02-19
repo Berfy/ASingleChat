@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">mqtt</string>
+
+    <string name="im_tip_connect_closing">连接关闭中</string>
+    <string name="im_tip_connect_closed">连接已关闭</string>
+    <string name="im_tip_connect_failed">连接失败</string>
+    <string name="im_tip_connect_network_error">请您检查网络，没有网络</string>
+    <string name="im_tip_connect_ip_null">连接信息（服务器地址）不能为空</string>
+    <string name="im_tip_connect_appid_null">连接信息（AppId未设置）不能为空</string>
+    <string name="im_tip_connect_manual_close">不需要重连或者手动关闭</string>
+    <string name="im_tip_msg_send_suc">消息发送成功</string>
+    <string name="im_tip_msg_send_failed">消息发送失败</string>
+    <string name="im_tip_msg_send_failed_conversation_null">消息未发送，没有会话信息</string>
+
+    <!-- time -->
+    <string name="im_time_yesterday">昨天</string>
+    <string name="im_time_day">日</string>
+    <string name="im_time_month">月</string>
+    <string name="im_time_year">年</string>
+
+    <!-- 消息 -->
+    <string name="im_sumary_image">[图片]</string>
+    <string name="im_sumary_voice">[语音]</string>
+    <string name="im_sumary_video">[视频]</string>
+    <string name="im_sumary_location">[位置]</string>
+    <string name="im_sumary_file">[文件]</string>
+    <string name="im_save_exist">文件已存在</string>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f9f9f9"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_470"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:layout_marginTop="@dimen/space_11"
+        android:background="@drawable/bg_my_code_white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_22"
+            android:layout_marginTop="@dimen/space_35"
+            android:orientation="horizontal">
+
+            <cn.berfy.sdk.mvpbase.view.CircleImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/space_50"
+                android:layout_height="@dimen/space_50"
+                android:src="@drawable/placeholder" />
+
+            <TextView
+                android:id="@+id/tv_nick"
+                android:layout_width="@dimen/space_150"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_13"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="aaaaa"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/font_18" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_code"
+            android:layout_width="@dimen/space_312"
+            android:layout_height="@dimen/space_312"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/space_28"
+            android:src="@drawable/placeholder" />
+    </LinearLayout>
+</LinearLayout>

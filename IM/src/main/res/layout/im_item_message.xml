@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:focusable="true"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/im_timeMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_5"
+        android:gravity="center"
+        android:paddingEnd="@dimen/space_7"
+        android:paddingStart="@dimen/space_7"
+        android:text=""
+        android:textColor="@color/color_d1d1d1"
+        android:textSize="@dimen/font_11"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/im_systemMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_5"
+        android:gravity="center"
+        android:paddingEnd="@dimen/space_7"
+        android:paddingStart="@dimen/space_7"
+        android:text="dfsdfsfsdf"
+        android:textColor="@color/color_d1d1d1"
+        android:textSize="@dimen/font_11"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_2">
+
+        <RelativeLayout
+            android:id="@+id/im_leftPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="@dimen/space_70"
+            android:layout_marginStart="@dimen/space_16">
+
+            <RelativeLayout
+                android:id="@+id/im_layout_leftAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true">
+
+                <cn.berfy.sdk.mvpbase.view.CircleImageView
+                    android:id="@+id/im_leftAvatar"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_40"
+                    android:src="@drawable/placeholder"/>
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/im_layout_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/space_6"
+                android:layout_toEndOf="@id/im_layout_leftAvatar"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/im_left_sender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_2"
+                    android:paddingStart="@dimen/space_10"
+                    android:text=""
+                    android:textColor="#aaaaaa"
+                    android:textSize="@dimen/font_11"
+                    android:visibility="gone"
+                    tools:ignore="RtlSymmetry"/>
+
+                <RelativeLayout
+                    android:id="@+id/im_leftMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/im_chat_item_left_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:longClickable="true"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/im_rightPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginEnd="@dimen/space_16"
+            android:layout_marginStart="@dimen/space_70">
+
+            <RelativeLayout
+                android:id="@+id/im_layout_rightAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true">
+
+                <cn.berfy.sdk.mvpbase.view.CircleImageView
+                    android:id="@+id/im_rightAvatar"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_40"
+                    android:src="@drawable/placeholder"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/im_layout_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_6"
+                android:layout_toStartOf="@id/im_layout_rightAvatar"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/im_right_sender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="@dimen/space_2"
+                    android:paddingEnd="@dimen/space_10"
+                    android:text=""
+                    android:textColor="#aaaaaa"
+                    android:textSize="@dimen/font_11"
+                    android:visibility="gone"
+                    tools:ignore="RtlSymmetry"/>
+
+                <RelativeLayout
+                    android:id="@+id/im_rightMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/im_chat_item_right_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:longClickable="true"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/im_rightDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/im_layout_right"
+                android:layout_below="@id/im_layout_right"
+                android:layout_marginEnd="3dp"
+                android:text=""
+                android:textColor="@color/color_black"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+
+            <RelativeLayout
+                android:id="@+id/im_sendStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/im_layout_right">
+
+                <ProgressBar
+                    android:id="@+id/im_sending"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/im_sendError"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/im_ic_error"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="cn.zcgames.sdk.mqttsdk.message.activity.IMTestActivity">
+
+    <Button
+            android:id="@+id/btn_deme1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="IM流程演示"
+            tools:ignore="MissingConstraints" />
+
+    <Button
+            android:id="@+id/btn_start_im_ui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/btn_deme1"
+            android:text="IM_UI"/>
+
+    <Button
+            android:id="@+id/btn_db"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DB测试"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_start_im_ui" android:visibility="visible"/>
+</android.support.constraint.ConstraintLayout>

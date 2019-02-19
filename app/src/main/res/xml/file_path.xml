@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<external-files-path name="extfiles" path="autoupdatecache/" />-->
+    <!--<external-cache-path name="extcachs" path="autoupdatecache/" />-->
+    <!--<cache-path name="intcachs" path="autoupdatecache/" />-->
+    <external-path name="DIR_PUBLIC_ROOT" path = "ZX_IMSDK"/>
+    <!--<external-path name="AdInfo" path="AdInfo" />-->
+
+</paths>

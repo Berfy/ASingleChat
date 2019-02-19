@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_header"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/spacing_tab_bar"
+    android:background="#e9e9e9"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/spacing_default"
+        android:paddingRight="@dimen/spacing_default"
+        android:text="取消"
+        android:textColor="#4a4a4a"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:text="选择照片"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="45dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ps_ic_check"
+            android:gravity="center"
+            android:paddingLeft="@dimen/space_3"
+            android:paddingRight="@dimen/space_3"
+            android:textColor="#4a4a4a"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <TextView
+
+        android:id="@+id/tv_ensure"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:paddingEnd="16dp"
+        android:text="确定"
+        android:textColor="#4a4a4a"
+        android:textSize="15sp"
+        tools:ignore="RtlSymmetry" />
+
+</RelativeLayout>

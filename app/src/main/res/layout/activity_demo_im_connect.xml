@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ScrollView
+            android:id="@+id/srollview"
+            android:layout_width="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/space_5"
+            android:layout_marginRight="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_height="30dp">
+
+        <TextView
+                android:id="@+id/tv_connect_info"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/font_12"
+                android:text="连接日志"/>
+    </ScrollView>
+
+    <EditText
+            android:id="@+id/edit_ip"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            app:layout_constraintTop_toBottomOf="@+id/srollview"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="@dimen/font_12"
+            android:text="ws://chat.workerman.net:7272/"
+            android:layout_marginLeft="@dimen/space_10"
+            android:hint="请填写URL"/>
+
+    <LinearLayout
+            android:id="@+id/ll_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_ip"
+            android:layout_marginLeft="@dimen/space_10"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/space_10"
+            android:orientation="horizontal">
+
+        <Switch
+                android:id="@+id/swt_connect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tv_connect_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未连接"/>
+    </LinearLayout>
+
+    <EditText
+            android:id="@+id/edit_username"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintTop_toBottomOf="@+id/ll_connect"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/edit_pwd"
+            android:textSize="@dimen/font_16"
+            android:layout_marginLeft="@dimen/space_10"
+            android:hint="请填写用户名"/>
+
+    <EditText
+            android:id="@+id/edit_pwd"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintTop_toBottomOf="@+id/ll_connect"
+            app:layout_constraintLeft_toRightOf="@+id/edit_username"
+            app:layout_constraintRight_toLeftOf="@+id/btn_login"
+            android:textSize="@dimen/font_16"
+            android:layout_marginLeft="@dimen/space_10"
+            android:hint="密码"/>
+
+    <Button
+            android:id="@+id/btn_login"
+            android:layout_width="0dp"
+            app:layout_constraintLeft_toRightOf="@+id/edit_pwd"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/ll_connect"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="登录"/>
+
+    <cn.berfy.sdk.mvpbase.view.recyclerview.CommonRefreshView
+            android:id="@+id/commonRefreshView"
+            app:layout_constraintTop_toBottomOf="@+id/edit_username"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sub"
+            android:layout_width="match_parent" android:layout_height="0dp">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_content"
+                android:layout_width="match_parent"
+                android:background="@color/color_03c794"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/space_5"
+                android:layout_marginLeft="@dimen/space_10"
+                android:layout_marginRight="@dimen/space_10"
+                android:layout_marginBottom="@dimen/space_5">
+        </android.support.v7.widget.RecyclerView>
+    </cn.berfy.sdk.mvpbase.view.recyclerview.CommonRefreshView>
+    <EditText
+            android:id="@+id/edit_topic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="@dimen/space_10"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toLeftOf="@+id/btn_sub"
+            android:layout_marginBottom="@dimen/space_10"
+            app:layout_constraintBottom_toTopOf="@+id/edit_room"
+            android:text="/1234567890/22/chat/001"
+            android:hint="请填写主题"/>
+
+    <Button
+            android:id="@+id/btn_sub"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/edit_room"
+            app:layout_constraintRight_toLeftOf="@+id/btn_unsub"
+            android:layout_marginBottom="@dimen/space_10"
+            android:text="订阅"/>
+
+    <Button
+            android:id="@+id/btn_unsub"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/edit_room"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="@dimen/space_10"
+            android:text="取消"/>
+
+    <EditText
+            android:id="@+id/edit_room"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="@dimen/space_10"
+            android:textSize="@dimen/font_12"
+            android:text="/1234567890/22/chat/001"
+            app:layout_constraintRight_toLeftOf="@+id/btn_join_room"
+            app:layout_constraintBottom_toTopOf="@+id/ll_control"
+            android:hint="请填写聊天室主题"/>
+
+    <Button
+            android:id="@+id/btn_join_room"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/ll_control"
+            app:layout_constraintRight_toLeftOf="@+id/btn_leave_room"
+            android:text="加入"/>
+
+    <Button
+            android:id="@+id/btn_leave_room"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/ll_control"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="退出"/>
+
+    <LinearLayout
+            android:id="@+id/ll_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_10"
+            app:layout_constraintBottom_toTopOf="@+id/edit_send_msg"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/btn_pull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toTopOf="@+id/edit_send_msg"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="拉消息"/>
+
+        <Button
+                android:id="@+id/btn_online"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toTopOf="@+id/edit_send_msg"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="获取在线成员"/>
+
+        <Button
+                android:id="@+id/btn_room_member"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/edit_send_msg"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="获取群成员"/>
+
+    </LinearLayout>
+
+    <EditText
+            android:id="@+id/edit_send_msg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintHorizontal_weight="3"
+            android:singleLine="true"
+            android:layout_marginLeft="@dimen/space_10"
+            app:layout_constraintRight_toLeftOf="@+id/edit_to_id"
+            android:hint="发送内容" app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <EditText
+            android:id="@+id/edit_to_id"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintLeft_toRightOf="@+id/edit_send_msg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="@dimen/font_12"
+            android:singleLine="true"
+            android:layout_marginRight="@dimen/space_10"
+            app:layout_constraintRight_toLeftOf="@+id/btn_send"
+            android:hint="话题"/>
+
+    <Button
+            android:id="@+id/btn_send"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/space_10"
+            app:layout_constraintHorizontal_weight="1"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@+id/edit_to_id"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="发送"/>
+</android.support.constraint.ConstraintLayout>

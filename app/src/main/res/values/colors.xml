@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="color_app_main">#FF2742FD</color>
+    <color name="color_4158ff">#4158ff</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_554EFE">#FF554EFE</color>
+    <color name="color_7c58ff">#7c58ff</color>
+
+
+    <!--QRCode scanner color begin-->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#B0000000</color>
+    <color name="viewfinder_frame">#90FFFFFF</color>
+    <color name="result_point_color">#C0FFFF00</color>
+    <color name="laser_color">#0F0</color>
+    <color name="corner_color">#00FF00</color>
+    <!--QRCode scanner color end-->
+</resources>

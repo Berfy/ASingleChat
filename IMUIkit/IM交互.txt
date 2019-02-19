@@ -1,0 +1,91 @@
+IM交互(对接SDK完成以下功能)
+
+1.系统消息
+  1>接收
+  2>UI展示
+  3>消息类型为简单的text消息
+  
+2.聊天消息
+  1>消息的发送
+  2>消息的接收
+  3>消息UI的展示
+  4>消息的类型
+    图片
+	语音
+	文字
+  5>图片和语音消息扩展（上传下载逻辑）
+	
+	
+IM Sdk涉及方法
+
+1>消息的接收
+interface OnMessageListener {
+
+    fun newMessage(message: Message?) //P2P消息
+
+    fun newGroupMessage(message: Message?) // 群组消息
+
+    fun systemMessage(message: MessageSystem?) // 系统消息
+
+    fun sendMessageStatus(message: String?, isSuc: Boolean) //发送消息  是否成功状态
+}
+
+2>消息的发送
+Conversation conversation = new Conversation(mToClientId, MessageType.TYPE_P2P);
+ conversation.sendMessage(message, new OnMessageSenddingCallback() {
+    @Override
+    public void onStart() {
+        LogF.d(TAG, "开始发送" );
+    }
+
+    @Override
+    public void uploadProgress(float pro) {
+        LogF.d(TAG, "pro==>" + pro);
+    }
+
+    @Override
+    public void onSuc(@NonNull Message message) {
+        mIChatView.onSendMessageSuccess(message);
+    }
+
+    @Override
+    public void onFailed(@NonNull String errMsg) {
+        mIChatView.onSendMessageFail(errMsg);
+    }
+ });
+		
+3>图片和语音消息扩展（上传下载逻辑）
+
+
+//将文件上传到服务器上
+//mPresenter.uploadFile(FileType,filePath);
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

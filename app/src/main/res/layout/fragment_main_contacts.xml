@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f9f9f9"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50">
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/space_6"
+            android:layout_marginTop="@dimen/font_14"
+            android:gravity="center"
+            android:padding="@dimen/space_9"
+            android:text="@string/search"
+            android:textColor="@color/color_999999" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_35"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/space_15"
+            android:layout_marginRight="@dimen/space_52"
+            android:background="@drawable/bg_search_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/space_20"
+                android:src="@drawable/search_friend_icon" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/space_3"
+                android:layout_marginRight="@dimen/space_30"
+                android:layout_toRightOf="@+id/iv_search"
+                android:background="@null"
+                android:gravity="start|center_vertical"
+                android:hint="@string/search"
+                android:textColor="@color/color_333333"
+                android:textColorHint="@color/color_999999"
+                android:textCursorDrawable="@drawable/cursor"
+                android:textSize="@dimen/font_12"
+                android:lines="1"
+                android:inputType="text"/>
+
+            <ImageView
+                android:id="@+id/iv_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/space_10"
+                android:src="@drawable/search_cancel_icon" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_66"
+        android:layout_marginTop="@dimen/space_9"
+        android:background="@color/color_white"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_new_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="新朋友"
+                android:textColor="@color/color_333333" />
+
+            <RelativeLayout
+                android:id="@+id/rl_new_friend_tip"
+                android:layout_width="@dimen/space_50"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/space_20"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="@dimen/space_8"
+                    android:layout_height="@dimen/space_8"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/red_point" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="@dimen/space_1"
+            android:layout_height="@dimen/space_30"
+            android:background="@color/color_d8d8d8" />
+
+        <TextView
+            android:id="@+id/tv_group_chat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="群聊"
+            android:textColor="@color/color_333333" />
+
+        <TextView
+            android:layout_width="@dimen/space_1"
+            android:layout_height="@dimen/space_30"
+            android:background="@color/color_d8d8d8" />
+
+        <TextView
+            android:id="@+id/tv_add_friend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="添加好友"
+            android:textColor="@color/color_333333" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/friend_dialog"
+            android:layout_width="@dimen/space_80"
+            android:layout_height="@dimen/space_80"
+            android:layout_centerInParent="true"
+            android:background="#9DDE76"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/font_30"
+            android:visibility="invisible" />
+
+        <cn.zcgames.sdk.mqttsdk.contacts.util.SideBar
+            android:id="@+id/sidebar"
+            android:layout_width="@dimen/space_15"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</LinearLayout>

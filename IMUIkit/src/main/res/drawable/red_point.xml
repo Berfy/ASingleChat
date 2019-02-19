@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners android:radius="180dp"/>
+    <size android:width="@dimen/space_1" android:height="@dimen/space_1"/>
+    <solid android:color="@color/im_btn_red"/>
+
+</shape>

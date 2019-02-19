@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f9f9f9">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_35"
+        android:text="@string/note_name"
+        android:textSize="@dimen/font_12"
+        android:textColor="@color/color_999999"
+        android:paddingLeft="@dimen/space_15"
+        android:paddingTop="@dimen/space_16"/>
+
+    <LinearLayout
+        android:id="@+id/ll_set_note"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_42"
+        android:background="@color/white_normal"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_input_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:textCursorDrawable="@drawable/cursor"
+            android:textColorHint="@color/color_b3b3b3"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_14"
+            android:hint="@string/input_note"
+            android:text="花都开了"
+            android:maxLength="15"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/space_15"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/iv_delete_input"
+            android:layout_width="@dimen/space_20"
+            android:layout_height="@dimen/space_20"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/space_15"
+            android:src="@drawable/search_cancel_icon"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

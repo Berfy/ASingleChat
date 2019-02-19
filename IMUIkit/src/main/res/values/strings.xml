@@ -1,0 +1,71 @@
+<resources>
+    <string name="im_app_name">MqttUIkit</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- message -->
+    <!--消息-->
+    <string name="message_title">消息</string>
+    <string name="message_no_sys">暂无消息</string>
+    <string name="message_sys">系统通知</string>
+    <string name="message_sys_type_agree">已同意</string>
+    <string name="message_sys_type_reject">已拒绝</string>
+    <string name="message_sys_type_agree_btn">同意</string>
+    <string name="message_sys_type_reject_btn">拒绝</string>
+    <string name="im_send_text_error">消息发送失败</string>
+    <string name="im_summary_image">[图片]</string>
+    <string name="im_summary_voice">[语音]</string>
+    <string name="im_summary_video">[小视频]</string>
+    <string name="im_summary_file">[文件]</string>
+    <string name="im_summary_group_admin_change">管理员变更</string>
+    <string name="im_summary_group_info_change">群信息已更新</string>
+    <string name="im_summary_group_mem_add">加入聊天室</string>
+    <string name="im_summary_group_mem_quit">退出聊天室</string>
+    <string name="im_summary_group_mem_modify">资料变更</string>
+    <string name="im_chat_up_finger">手指上滑，取消发送</string>
+    <string name="im_confirm">确定</string>
+    <string name="im_cancel">取消</string>
+    <string name="im_chat_press_talk">按住 说话</string>
+    <string name="im_chat_release_send">松开 结束</string>
+    <string name="im_chat_image">图片</string>
+    <string name="im_chat_file">文件</string>
+    <string name="im_chat_photo">拍摄</string>
+    <string name="im_chat_video">小视频</string>
+    <string name="im_chat_resend">重新发送</string>
+    <string name="im_chat_file_too_large">文件过大，发送失败</string>
+    <string name="im_chat_file_not_exist">文件不存在，发送失败</string>
+    <string name="im_chat_image_preview_title">图片预览</string>
+    <string name="im_chat_image_preview_send">发送</string>
+    <string name="im_chat_image_preview_ori">原图发送</string>
+    <string name="im_chat_typing">对方正在输入…</string>
+    <string name="im_chat_content_bad">内容含有敏感词</string>
+    <string name="im_chat_content_null">您还没有输入任何内容</string>
+    <string name="message_sys_type_invite_meet">约会邀请</string>
+    <string name="im_send">发送</string>
+
+    <string name="im_time_more">99+</string>
+
+    <!--file-->
+    <string name="im_save_succ">保存成功</string>
+    <string name="im_download_fail">下载失败</string>
+    <string name="im_downloading">正在下载，请稍候</string>
+    <string name="im_save_fail">保存失败</string>
+    <string name="im_save_exist">文件已存在</string>
+    <string name="im_picker_image_error">获取图片出错</string>
+
+
+    <!--通用编辑页面-->
+    <string name="common_edit_maxlength_title">编辑</string>
+    <string name="common_edit_maxlength_tip">限制输入不能超过%s个字符</string>
+    <string name="common_edit_no_input_tip">请输入内容</string>
+    <string name="im_chat_copy">复制</string>
+    <string name="copy_success">内容已复制到剪切板</string>
+    <string name="im_chat_del">删除</string>
+    <string name="recovery_publish_tip">请输入内容…</string>
+    <string name="go_group_chat">发起群聊</string>
+    <string name="add_friend">添加朋友</string>
+
+
+</resources>

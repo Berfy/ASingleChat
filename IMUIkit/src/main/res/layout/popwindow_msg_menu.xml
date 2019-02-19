@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/space_115"
+    android:layout_height="@dimen/space_85"
+    android:background="@drawable/add_list_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_group_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_12"
+        android:drawablePadding="@dimen/space_3"
+        android:drawableStart="@drawable/group_chat"
+        android:gravity="center"
+        android:text="@string/go_group_chat"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/font_14" />
+
+    <View
+        android:id="@+id/divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_1"
+        android:layout_marginEnd="@dimen/space_14"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_6"
+        android:background="@color/color_5e5e5e" />
+
+    <TextView
+        android:id="@+id/tv_add_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_6"
+        android:drawablePadding="@dimen/space_3"
+        android:drawableStart="@drawable/add_friend"
+        android:gravity="center"
+        android:text="@string/add_friend"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/font_14" />
+</LinearLayout>

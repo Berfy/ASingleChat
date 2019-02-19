@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/ps_layout_header" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_images"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:ignore="UnknownIdInLayout" />
+
+    <RelativeLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_tab_bar"
+        android:layout_gravity="bottom"
+        android:background="#ffffff"
+        android:alpha="0.9">
+
+        <TextView
+            android:id="@+id/tv_review"
+            android:text="预览"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawablePadding="@dimen/spacing_four"
+            android:gravity="bottom"
+            android:paddingBottom="@dimen/spacing_default"
+            android:paddingLeft="@dimen/spacing_default"
+            android:paddingRight="@dimen/spacing_default"
+            android:paddingTop="15dp"
+            android:textColor="#4a4a4a"
+            android:textSize="@dimen/txt_big_content" />
+
+
+        <TextView
+            android:id="@+id/tv_selected_image_folder_name"
+            android:text="相册"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/spacing_default"
+            android:paddingRight="@dimen/spacing_default"
+            android:textColor="#4a4a4a"
+            android:textSize="@dimen/txt_big_content" />
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
