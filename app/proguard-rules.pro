@@ -62,4 +62,10 @@ public protected <methods>;
 }
 
 #model
+-keep class cn.zcgames.sdk.mqttsdk.contacts.model.** { *; }
+-keep class cn.zcgames.sdk.mqttsdk.home.model.** { *; }
+-keep class cn.zcgames.sdk.mqttsdk.message.model.** { *; }
+-keep class cn.zcgames.sdk.mqttsdk.personal.model.** { *; }
+-keep class cn.berfy.sdk.http.model.** { *; }
 -keep class cn.berfy.service.im.model.** { *; }
+-keep class cn.berfy.sdk.mvpbase.model.** { *; }

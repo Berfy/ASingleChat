@@ -42,7 +42,7 @@ class MessageTab : BaseModel() {
     var type: String = ""//p2p单聊 group群聊 chatroom聊天室
 
     @Column
-    var chat_type: String = ""//text聊天 image发送图片 voice语音 file文件 video视频 location位置
+    var chat_type: String = ""//text聊天 image发送图片 voice语音 file文件 video视频 location位置 custom自定义
 
     @Column
     var sender_id: String = ""//发送者id

@@ -23,6 +23,7 @@ import cn.berfy.sdk.mvpbase.util.toast.SuperActivityToast;
 
 /**
  * Utility class that handles any show and hide animations for a
+ * {@link com.github.johnpersano.supertoasts.library.SuperToast} or
  * {@link SuperActivityToast}.
  */
 public class AnimationUtils {
@@ -39,6 +40,7 @@ public class AnimationUtils {
     /**
      * Returns the corresponding system animation reference for a
      * particular {@link Style.Animations} reference.
+     * This is used by the {@link com.github.johnpersano.supertoasts.library.SuperToast}
      * {@link android.view.WindowManager}.
      *
      * @param animations The desired {@link Style.Animations} constant
@@ -57,6 +59,7 @@ public class AnimationUtils {
     /**
      * Returns the corresponding {@link Animator} for a particular
      * {@link Style.Animations} reference.
+     * This is used by the {@link com.github.johnpersano.supertoasts.library.Toaster}
      * when showing a {@link SuperActivityToast} and has no purpose being called directly.
      *
      * @param superActivityToast The SuperActivityToast being animated

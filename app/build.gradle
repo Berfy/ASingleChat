@@ -32,9 +32,9 @@ android {
     signingConfigs {
         release {
             storeFile file("app.jks")
-            storePassword "cplasf2011"
-            keyAlias "berfy"
-            keyPassword "cplasf2011"
+            storePassword "zx_zchat_2019"
+            keyAlias "zchat"
+            keyPassword "zx_zchat_2019"
         }
     }
 

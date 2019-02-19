@@ -22,6 +22,7 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Utility class that contains various colors that can be used in conjunction with
+ * {@link com.github.johnpersano.supertoasts.library.utils.BackgroundUtils}.
  */
 @SuppressWarnings("UnusedDeclaration")
 public class PaletteUtils {
@@ -68,6 +69,7 @@ public class PaletteUtils {
     /**
      * Returns a solid color.
      *
+     * @param color {@link com.github.johnpersano.supertoasts.library.utils
      *              .PaletteUtils.PaletteColors}
      * @return The parsed {@link Color}
      */
@@ -78,6 +80,7 @@ public class PaletteUtils {
     /**
      * Returns a transparent color.
      *
+     * @param color {@link com.github.johnpersano.supertoasts.library.utils
      *              .PaletteUtils.PaletteColors}
      * @return The parsed {@link Color}
      */

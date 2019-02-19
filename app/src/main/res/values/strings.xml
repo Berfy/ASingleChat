@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ASingleChat</string>
+    <string name="app_name">ZChat预览版</string>
 
     <string name="account">账号</string>
     <string name="account_hint">请输入手机号或邮箱</string>

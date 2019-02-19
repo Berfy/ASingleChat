@@ -4,6 +4,7 @@ import android.text.TextUtils
 import cn.berfy.sdk.mvpbase.util.LogF
 import cn.berfy.sdk.mvpbase.util.SharedPreferenceUtil
 import cn.berfy.service.im.cache.CacheConstants
+import cn.berfy.service.im.cache.db.tab.MessageTab
 import cn.berfy.service.im.manager.IMManager
 import cn.berfy.service.im.model.*
 import cn.berfy.service.im.model.conversation.Conversation
@@ -123,23 +124,19 @@ object MessageTextUtil {
     //收到消息解析
     fun receivePayloadToMsg(rawMessage: RawMessage): Message? {
         try {
+            var newMessage: Message? = null
             when (rawMessage.chatType) {
                 MessageContentType.TYPE_TEXT -> {
-                    val newMessage = MessageText()
-                    newMessage.id = rawMessage.id
-                    newMessage.conversation = rawMessage.createConversation()
+                    newMessage = MessageText()
                     try {
                         val payload = JSONObject(rawMessage.payload)
                         newMessage.content = payload.optString("msg")
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
-                    return newMessage
                 }
                 MessageContentType.TYPE_IMAGE -> {
-                    val newMessage = MessageImage()
-                    newMessage.id = rawMessage.id
-                    newMessage.conversation = rawMessage.createConversation()
+                    newMessage = MessageImage()
                     try {
                         val payload = JSONObject(rawMessage.payload)
                         newMessage.name = payload.optString("name")
@@ -168,12 +165,9 @@ object MessageTextUtil {
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
-                    return newMessage
                 }
                 MessageContentType.TYPE_VOICE -> {
-                    val newMessage = MessageVoice()
-                    newMessage.id = rawMessage.id
-                    newMessage.conversation = rawMessage.createConversation()
+                    newMessage = MessageVoice()
                     try {
                         val payload = JSONObject(rawMessage.payload)
                         newMessage.duration = payload.optLong("dur")
@@ -189,12 +183,9 @@ object MessageTextUtil {
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
-                    return newMessage
                 }
                 MessageContentType.TYPE_VIDEO -> {
-                    val newMessage = MessageVideo()
-                    newMessage.id = rawMessage.id
-                    newMessage.conversation = rawMessage.createConversation()
+                    newMessage = MessageVideo()
                     try {
                         val payload = JSONObject(rawMessage.payload)
                         newMessage.duration = payload.optLong("dur")
@@ -222,12 +213,9 @@ object MessageTextUtil {
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
-                    return newMessage
                 }
                 MessageContentType.TYPE_FILE -> {
-                    val newMessage = MessageFile()
-                    newMessage.id = rawMessage.id
-                    newMessage.conversation = rawMessage.createConversation()
+                    newMessage = MessageFile()
                     try {
                         val payload = JSONObject(rawMessage.payload)
                         newMessage.name = payload.optString("name")
@@ -243,12 +231,9 @@ object MessageTextUtil {
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
-                    return newMessage
                 }
                 MessageContentType.TYPE_LOCATION -> {
-                    val newMessage = MessageLocation()
-                    newMessage.id = rawMessage.id
-                    newMessage.conversation = rawMessage.createConversation()
+                    newMessage = MessageLocation()
                     try {
                         val payload = JSONObject(rawMessage.payload)
                         newMessage.title = payload.optString("title")
@@ -257,11 +242,9 @@ object MessageTextUtil {
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
-                    return newMessage
                 }
                 MessageContentType.TYPE_CUSTOM -> {
-                    val newMessage = MessageCustom()
-                    newMessage.id = rawMessage.id
+                    newMessage = MessageCustom()
                     newMessage.conversation = rawMessage.createConversation()
                     try {
                         val payload = JSONObject(rawMessage.payload)
@@ -283,8 +266,17 @@ object MessageTextUtil {
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
-                    return newMessage
                 }
+            }
+            if (null != newMessage) {
+                newMessage.id = rawMessage.id
+                newMessage.rawId = rawMessage.rawId
+                newMessage.senderId = rawMessage.senderId
+                newMessage.senderName = rawMessage.senderName
+                newMessage.time = rawMessage.time
+                newMessage.sendStatus = Message.STATUS_SEND_SUC
+                newMessage.conversation = rawMessage.createConversation()
+                return newMessage
             }
             return null
         } catch (e: JSONException) {
@@ -423,7 +415,6 @@ object MessageTextUtil {
                 }
                 100 -> {
                     newMessage = MessageCustom()
-                    newMessage.id = serverMessage.id
                     newMessage.conversation = Conversation(serverMessage.sender, MessageType.TYPE_CUSTOM)
                     try {
                         val payload = JSONObject(serverMessage.payload)
@@ -469,6 +460,7 @@ object MessageTextUtil {
                         newMessage.conversation = Conversation(serverMessage.sender, MessageType.TYPE_SYSTEM)
                     }
                 }
+                newMessage.id = serverMessage.id
                 newMessage.senderId = serverMessage.sender
                 newMessage.time =
                     if (TextUtils.isEmpty(serverMessage.timestamp)) 0 else serverMessage.timestamp.toLong()
@@ -481,11 +473,428 @@ object MessageTextUtil {
         }
     }
 
+    //本地表数据额结构->消息解析
+    fun tabToMessage(messageTab: MessageTab): Message? {
+        try {
+            var newMessage: Message? = null
+            when (messageTab.chat_type) {
+                "text" -> {
+                    newMessage = MessageText()
+                    try {
+                        val payload = JSONObject(messageTab.content)
+                        newMessage.content = payload.optString("msg")
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+                "image" -> {
+                    newMessage = MessageImage()
+                    try {
+                        val payload = JSONObject(messageTab.content)
+                        newMessage.name = payload.optString("name")
+                        newMessage.md5 = payload.optString("md5")
+                        newMessage.imageUrl = payload.optString("url")
+                        newMessage.thumbUrl = payload.optString("small")
+                        newMessage.ext = payload.optString("ext")
+                        val w = payload.optString("w")
+                        if (TextUtils.isEmpty(w)) {
+                            newMessage.w = 0
+                        } else {
+                            newMessage.w = w.toInt()
+                        }
+                        val h = payload.optString("h")
+                        if (TextUtils.isEmpty(h)) {
+                            newMessage.h = 0
+                        } else {
+                            newMessage.h = h.toInt()
+                        }
+                        val size = payload.optString("size")
+                        if (TextUtils.isEmpty(size)) {
+                            newMessage.fileLength = 0
+                        } else {
+                            newMessage.fileLength = size.toLong()
+                        }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+                "voice" -> {
+                    newMessage = MessageVoice()
+                    try {
+                        val payload = JSONObject(messageTab.content)
+                        newMessage.duration = payload.optLong("dur")
+                        newMessage.md5 = payload.optString("md5")
+                        newMessage.voiceUrl = payload.optString("url")
+                        newMessage.ext = payload.optString("ext")
+                        val size = payload.optString("size")
+                        if (TextUtils.isEmpty(size)) {
+                            newMessage.fileLength = 0
+                        } else {
+                            newMessage.fileLength = size.toLong()
+                        }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+                "video" -> {
+                    newMessage = MessageVideo()
+                    try {
+                        val payload = JSONObject(messageTab.content)
+                        newMessage.duration = payload.optLong("dur")
+                        newMessage.md5 = payload.optString("md5")
+                        newMessage.videoUrl = payload.optString("url")
+                        newMessage.ext = payload.optString("ext")
+                        val w = payload.optString("w")
+                        if (TextUtils.isEmpty(w)) {
+                            newMessage.w = 0
+                        } else {
+                            newMessage.w = w.toInt()
+                        }
+                        val h = payload.optString("h")
+                        if (TextUtils.isEmpty(h)) {
+                            newMessage.h = 0
+                        } else {
+                            newMessage.h = h.toInt()
+                        }
+                        val size = payload.optString("size")
+                        if (TextUtils.isEmpty(size)) {
+                            newMessage.fileLength = 0
+                        } else {
+                            newMessage.fileLength = size.toLong()
+                        }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+                "file" -> {
+                    newMessage = MessageFile()
+                    try {
+                        val payload = JSONObject(messageTab.content)
+                        newMessage.name = payload.optString("name")
+                        newMessage.md5 = payload.optString("md5")
+                        newMessage.fileUrl = payload.optString("url")
+                        newMessage.ext = payload.optString("ext")
+                        val size = payload.optString("size")
+                        if (TextUtils.isEmpty(size)) {
+                            newMessage.fileLength = 0
+                        } else {
+                            newMessage.fileLength = size.toLong()
+                        }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+                "location" -> {
+                    newMessage = MessageLocation()
+                    try {
+                        val payload = JSONObject(messageTab.content)
+                        newMessage.title = payload.optString("title")
+                        newMessage.lng = payload.optString("lng")
+                        newMessage.lat = payload.optString("lat")
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+                "custom" -> {
+                    newMessage = MessageCustom()
+                    try {
+                        val payload = JSONObject(messageTab.content)
+                        val type = payload.getString("type")
+                        when (type) {
+                            "101" -> {//添加好友
+                                newMessage.cus_type = MessageCustomType.TYPE_ADD_FRIEND
+                            }
+                            "102" -> {//通过好友申请
+                                newMessage.cus_type = MessageCustomType.TYPE_AGREE_ADD_FRIEND
+                            }
+                            "103" -> {//拒绝好友申请
+                                newMessage.cus_type = MessageCustomType.TYPE_REFUSE_ADD_FRIEND
+                            }
+                        }
+                        newMessage.cus_from = payload.optString("from")
+                        newMessage.cus_to = payload.optString("to")
+                        newMessage.cus_msg = payload.optString("msg")
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+            if (null != newMessage) {
+                newMessage.id = messageTab.msg_id
+                newMessage.rawId = messageTab.raw_id
+                newMessage.senderId = messageTab.sender_id
+                newMessage.senderName = messageTab.sender_name
+                newMessage.time = messageTab.last_update_time
+                newMessage.sendStatus =
+                    if (messageTab.send_status == 0) Message.STATUS_SEND
+                    else if (messageTab.send_status == 1) Message.STATUS_SEND_SUC else Message.STATUS_SEND_FAILED
+                var conversation: Conversation? = null
+                when (messageTab.type) {
+                    "p2p" -> {
+                        LogF.d(TAG, "会话类型-p2p")
+                        conversation = Conversation(
+                            messageTab.conversation_id,
+                            MessageType.TYPE_P2P
+                        )
+                    }
+                    "group" -> {
+                        LogF.d(TAG, "会话类型-group")
+                        conversation = Conversation(
+                            messageTab.conversation_id,
+                            MessageType.TYPE_GROUP
+                        )
+                    }
+                    "chatroom" -> {
+                        LogF.d(TAG, "会话类型-chatroom")
+                        conversation = Conversation(
+                            messageTab.conversation_id,
+                            MessageType.TYPE_CHATROOM
+                        )
+                    }
+                    "custom" -> {
+                        LogF.d(TAG, "会话类型-chatroom")
+                        conversation = Conversation(
+                            messageTab.conversation_id,
+                            MessageType.TYPE_CUSTOM
+                        )
+                    }
+                    "system" -> {
+                        LogF.d(TAG, "会话类型-chatroom")
+                        conversation = Conversation(
+                            messageTab.conversation_id,
+                            MessageType.TYPE_SYSTEM
+                        )
+                    }
+                    else -> {
+                        LogF.d(TAG, "其他类型会话")
+                    }
+                }
+                newMessage.conversation = conversation
+                return newMessage
+            }
+            return null
+        } catch (e: JSONException) {
+            e.printStackTrace()
+            return null
+        }
+    }
+
+    //发送消息->本地表数据结构
+//    fun sendMessageToTab(message: Message): MessageTab? {
+//        try {
+//            var newMessageTab: MessageTab? = null
+//            when (message.type) {
+//                MessageContentType.TYPE_TEXT -> {
+//                    newMessageTab = MessageTab()
+//                    try {
+//                        val payload = JSONObject(messageTab.content)
+//                        newMessage.content = payload.optString("msg")
+//                    } catch (e: JSONException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//                MessageContentType.TYPE_IMAGE -> {
+//                    newMessageTab = MessageTab()
+//                    try {
+//                        val payload = JSONObject(messageTab.content)
+//                        newMessage.name = payload.optString("name")
+//                        newMessage.md5 = payload.optString("md5")
+//                        newMessage.imageUrl = payload.optString("url")
+//                        newMessage.thumbUrl = payload.optString("small")
+//                        newMessage.ext = payload.optString("ext")
+//                        val w = payload.optString("w")
+//                        if (TextUtils.isEmpty(w)) {
+//                            newMessage.w = 0
+//                        } else {
+//                            newMessage.w = w.toInt()
+//                        }
+//                        val h = payload.optString("h")
+//                        if (TextUtils.isEmpty(h)) {
+//                            newMessage.h = 0
+//                        } else {
+//                            newMessage.h = h.toInt()
+//                        }
+//                        val size = payload.optString("size")
+//                        if (TextUtils.isEmpty(size)) {
+//                            newMessage.fileLength = 0
+//                        } else {
+//                            newMessage.fileLength = size.toLong()
+//                        }
+//                    } catch (e: JSONException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//                MessageContentType.TYPE_VOICE -> {
+//                    newMessageTab = MessageTab()
+//                    try {
+//                        val payload = JSONObject(messageTab.content)
+//                        newMessage.duration = payload.optLong("dur")
+//                        newMessage.md5 = payload.optString("md5")
+//                        newMessage.voiceUrl = payload.optString("url")
+//                        newMessage.ext = payload.optString("ext")
+//                        val size = payload.optString("size")
+//                        if (TextUtils.isEmpty(size)) {
+//                            newMessage.fileLength = 0
+//                        } else {
+//                            newMessage.fileLength = size.toLong()
+//                        }
+//                    } catch (e: JSONException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//                MessageContentType.TYPE_VIDEO -> {
+//                    newMessageTab = MessageTab()
+//                    try {
+//                        val payload = JSONObject(messageTab.content)
+//                        newMessage.duration = payload.optLong("dur")
+//                        newMessage.md5 = payload.optString("md5")
+//                        newMessage.videoUrl = payload.optString("url")
+//                        newMessage.ext = payload.optString("ext")
+//                        val w = payload.optString("w")
+//                        if (TextUtils.isEmpty(w)) {
+//                            newMessage.w = 0
+//                        } else {
+//                            newMessage.w = w.toInt()
+//                        }
+//                        val h = payload.optString("h")
+//                        if (TextUtils.isEmpty(h)) {
+//                            newMessage.h = 0
+//                        } else {
+//                            newMessage.h = h.toInt()
+//                        }
+//                        val size = payload.optString("size")
+//                        if (TextUtils.isEmpty(size)) {
+//                            newMessage.fileLength = 0
+//                        } else {
+//                            newMessage.fileLength = size.toLong()
+//                        }
+//                    } catch (e: JSONException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//                MessageContentType.TYPE_FILE -> {
+//                    newMessageTab = MessageTab()
+//                    try {
+//                        val payload = JSONObject(messageTab.content)
+//                        newMessage.name = payload.optString("name")
+//                        newMessage.md5 = payload.optString("md5")
+//                        newMessage.fileUrl = payload.optString("url")
+//                        newMessage.ext = payload.optString("ext")
+//                        val size = payload.optString("size")
+//                        if (TextUtils.isEmpty(size)) {
+//                            newMessage.fileLength = 0
+//                        } else {
+//                            newMessage.fileLength = size.toLong()
+//                        }
+//                    } catch (e: JSONException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//                MessageContentType.TYPE_LOCATION -> {
+//                    newMessageTab = MessageTab()
+//                    try {
+//                        val payload = JSONObject(messageTab.content)
+//                        newMessage.title = payload.optString("title")
+//                        newMessage.lng = payload.optString("lng")
+//                        newMessage.lat = payload.optString("lat")
+//                    } catch (e: JSONException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//                "custom" -> {
+//                    newMessageTab = MessageTab()
+//                    try {
+//                        val payload = JSONObject(messageTab.content)
+//                        val type = payload.getString("type")
+//                        when (type) {
+//                            "101" -> {//添加好友
+//                                newMessage.cus_type = MessageCustomType.TYPE_ADD_FRIEND
+//                            }
+//                            "102" -> {//通过好友申请
+//                                newMessage.cus_type = MessageCustomType.TYPE_AGREE_ADD_FRIEND
+//                            }
+//                            "103" -> {//拒绝好友申请
+//                                newMessage.cus_type = MessageCustomType.TYPE_REFUSE_ADD_FRIEND
+//                            }
+//                        }
+//                        newMessage.cus_from = payload.optString("from")
+//                        newMessage.cus_to = payload.optString("to")
+//                        newMessage.cus_msg = payload.optString("msg")
+//                    } catch (e: JSONException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//            }
+//            if (null != newMessage) {
+//                newMessage.id = messageTab.msg_id
+//                newMessage.rawId = messageTab.raw_id
+//                newMessage.senderId = messageTab.sender_id
+//                newMessage.senderName = messageTab.sender_name
+//                newMessage.time = messageTab.last_update_time
+//                newMessage.sendStatus =
+//                    if (messageTab.send_status == 0) Message.STATUS_SEND
+//                    else if (messageTab.send_status == 1) Message.STATUS_SEND_SUC else Message.STATUS_SEND_FAILED
+//                var conversation: Conversation? = null
+//                when (messageTab.type) {
+//                    "p2p" -> {
+//                        LogF.d(TAG, "会话类型-p2p")
+//                        conversation = Conversation(
+//                            messageTab.conversation_id,
+//                            MessageType.TYPE_P2P
+//                        )
+//                    }
+//                    "group" -> {
+//                        LogF.d(TAG, "会话类型-group")
+//                        conversation = Conversation(
+//                            messageTab.conversation_id,
+//                            MessageType.TYPE_GROUP
+//                        )
+//                    }
+//                    "chatroom" -> {
+//                        LogF.d(TAG, "会话类型-chatroom")
+//                        conversation = Conversation(
+//                            messageTab.conversation_id,
+//                            MessageType.TYPE_CHATROOM
+//                        )
+//                    }
+//                    "custom" -> {
+//                        LogF.d(TAG, "会话类型-chatroom")
+//                        conversation = Conversation(
+//                            messageTab.conversation_id,
+//                            MessageType.TYPE_CUSTOM
+//                        )
+//                    }
+//                    "system" -> {
+//                        LogF.d(TAG, "会话类型-chatroom")
+//                        conversation = Conversation(
+//                            messageTab.conversation_id,
+//                            MessageType.TYPE_SYSTEM
+//                        )
+//                    }
+//                    else -> {
+//                        LogF.d(TAG, "其他类型会话")
+//                    }
+//                }
+//                newMessage.conversation = conversation
+//                return newMessage
+//            }
+//            return null
+//        } catch (e: JSONException) {
+//            e.printStackTrace()
+//            return null
+//        }
+//    }
+
     //收到自定义消息解析
     fun receiveCustomToMsg(rawMessage: RawMessage): MessageCustom? {
         try {
             val newMessage = MessageCustom()
             newMessage.id = rawMessage.id
+            newMessage.rawId = rawMessage.rawId
+            newMessage.senderId = rawMessage.senderId
+            newMessage.senderName = rawMessage.senderName
+            newMessage.time = rawMessage.time
+            newMessage.sendStatus = Message.STATUS_SEND_SUC
             newMessage.conversation = rawMessage.createConversation()
             val payload = JSONObject(rawMessage.payload)
             val type = payload.getString("type")

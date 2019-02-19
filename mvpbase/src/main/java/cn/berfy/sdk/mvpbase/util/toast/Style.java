@@ -28,6 +28,10 @@ import java.lang.annotation.RetentionPolicy;
 import cn.berfy.sdk.mvpbase.util.toast.utils.BackgroundUtils;
 import cn.berfy.sdk.mvpbase.util.toast.utils.PaletteUtils;
 
+/**
+ * This class will store references to the various attributes of a {@link com.github.johnpersano.supertoasts.library.SuperToast}
+ * or {@link com.github.johnpersano.supertoasts.library.SuperActivityToast}.
+ */
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
 public class Style implements Parcelable {
 

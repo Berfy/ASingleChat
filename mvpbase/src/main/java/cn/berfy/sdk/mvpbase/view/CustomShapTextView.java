@@ -7,7 +7,6 @@ import android.content.res.TypedArray;
 import android.graphics.*;
 
 import android.support.annotation.ColorInt;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 import android.widget.TextView;
@@ -21,7 +20,7 @@ import cn.berfy.sdk.mvpbase.R;
  * Created by cjy on 16/11/30.
  */
 
-public class CustomShapTextView extends AppCompatTextView {
+public class CustomShapTextView extends TextView {
 
     private Context mContext;
 

@@ -12,15 +12,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
-import android.support.v7.widget.AppCompatImageButton;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
 /**
  * 圆形图片控件
  */
-public class CircleImageView extends AppCompatImageView {
+public class CircleImageView extends ImageView {
 
 
     private Bitmap mBitmap;

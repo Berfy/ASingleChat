@@ -202,8 +202,8 @@ class IMManager private constructor(context: Context, pushIntentClass: Class<*>)
                 var y = 0
                 for (i in 0..(mSendMsgStatusCallbacks.size - 1)) {
                     val msg: Message = mSendMsgStatusCallbacks.get(i - y)
-                    LogF.d(TAG, "找状态 ${msg.id}  ${token.message.id}")
                     if (msg.tagId == token.message.id) {
+                        LogF.d(TAG, "发送完毕 回调状态 ${token.message.id}")
                         msg.mSendingCallback.onSuc(msg)
                         mSendMsgStatusCallbacks.remove(msg)
                         //发送成功 更新消息和会话
@@ -779,9 +779,6 @@ class IMManager private constructor(context: Context, pushIntentClass: Class<*>)
                     }
                 }
                 if (null != newMessage) {
-                    newMessage.senderId = rawMessage.senderId
-                    newMessage.senderName = rawMessage.senderName
-                    newMessage.time = rawMessage.time
                     //测试代码 数据库存储消息和会话
                     if (!FilterManager.filterMessage(newMessage)) {
                         for (listener in mMessageListeners!!) {
@@ -798,6 +795,12 @@ class IMManager private constructor(context: Context, pushIntentClass: Class<*>)
         } else if (rawMessage.type == MessageType.TYPE_SYSTEM) {//自定义消息
             if (null != mMessageListeners) {//如果没有监听  不做分发
                 newMessage = MessageSystem()
+                newMessage.id = rawMessage.id
+                newMessage.rawId = rawMessage.rawId
+                newMessage.senderId = rawMessage.senderId
+                newMessage.senderName = rawMessage.senderName
+                newMessage.time = rawMessage.time
+                newMessage.sendStatus = Message.STATUS_SEND_SUC
                 newMessage.conversation = rawMessage.createConversation()
             }
         } else if (rawMessage.type == MessageType.TYPE_CUSTOM) {//自定义消息
@@ -1425,7 +1428,7 @@ class IMManager private constructor(context: Context, pushIntentClass: Class<*>)
             msg.mSendingCallback.onFailed(errMsg)
             return
         }
-        packgeMessage(msg)
+        packageMessage(msg)
         var urlType = ""
         /**
          * ### 上传图片
@@ -1529,9 +1532,10 @@ class IMManager private constructor(context: Context, pushIntentClass: Class<*>)
     }
 
     //消息封装
-    private fun packgeMessage(msg: Message) {
+    private fun packageMessage(msg: Message) {
         val id = MessageTextUtil.newID()//生成消息id
         msg.id = id
+        msg.rawId = id
         if (TextUtils.isEmpty(msg.senderId))
             msg.senderId = mUserName
         if (TextUtils.isEmpty(msg.senderName))
@@ -1547,6 +1551,7 @@ class IMManager private constructor(context: Context, pushIntentClass: Class<*>)
         msg.conversation!!.lastMessage = msg.getSummaryText()
         msg.conversation!!.lastMessageTime = msg.time
         CacheManager.instance.addConversation(msg.conversation)
+        CacheManager.instance.addMessage(msg)
     }
 
     //发送消息

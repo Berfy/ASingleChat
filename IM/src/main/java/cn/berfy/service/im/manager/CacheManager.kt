@@ -14,11 +14,8 @@ import cn.berfy.service.im.cache.db.tab.MessageTab
 import cn.berfy.service.im.cache.db.tab.MessageTab_Table
 import cn.berfy.service.im.manager.i.OnMessageListener
 import cn.berfy.service.im.manager.i.IMCallback
+import cn.berfy.service.im.model.*
 import cn.berfy.service.im.model.conversation.Conversation
-import cn.berfy.service.im.model.Message
-import cn.berfy.service.im.model.MessageCustom
-import cn.berfy.service.im.model.MessageText
-import cn.berfy.service.im.model.MessageType
 import cn.berfy.service.im.util.MessageTextUtil
 import com.raizlabs.android.dbflow.config.FlowManager
 import com.raizlabs.android.dbflow.sql.language.OrderBy
@@ -99,47 +96,41 @@ class CacheManager {
         Constant.EXECUTOR.execute(object : Runnable {
             override fun run() {
                 //时间正序
+                var type = ""
+                when (conversation.type) {
+                    MessageType.TYPE_P2P -> {
+                        LogF.d(TAG, "会话类型-p2p")
+                        type = "p2p"
+                    }
+                    MessageType.TYPE_GROUP -> {
+                        LogF.d(TAG, "会话类型-group")
+                        type = "group"
+                    }
+                    MessageType.TYPE_CHATROOM -> {
+                        LogF.d(TAG, "会话类型-chatroom")
+                        type = "chatroom"
+                    }
+                    else -> {
+                        LogF.d(TAG, "其他类型会话")
+                    }
+                }
                 val cacheMsgs = SQLite.select()
                     .from(MessageTab::class.java)
                     .where(
                         MessageTab_Table.user_id.`is`(IMManager.instance.getLoginId()),
-                        MessageTab_Table.conversation_id.`is`(conversation.toId)
+                        MessageTab_Table.msg_id.lessThan(lastMsg.id),
+                        MessageTab_Table.conversation_id.`is`(conversation.toId),
+                        MessageTab_Table.type.`is`(type)
                     )
+                    .limit(count)
                     .orderBy(OrderBy.fromNameAlias(MessageTab_Table.last_update_time.nameAlias).ascending())
                     .queryList()
                 LogF.d(TAG, "获取本地消息数量 ${cacheMsgs.size}")
                 val msgs = ArrayList<Message>()
                 for (cacheMsg in cacheMsgs) {
                     LogF.d(TAG, "获取本地库会话 表数据=${GsonUtil.getInstance().toJson(cacheMsg)}")
-                    var newMessage: Message? = null
-                    var conversation: Conversation? = null
-                    when (cacheMsg.type) {
-                        "p2p" -> {
-                            LogF.d(TAG, "会话类型-p2p")
-                            conversation = Conversation(
-                                cacheMsg.conversation_id,
-                                MessageType.TYPE_P2P
-                            )
-                        }
-                        "group" -> {
-                            LogF.d(TAG, "会话类型-group")
-                            conversation = Conversation(
-                                cacheMsg.conversation_id,
-                                MessageType.TYPE_GROUP
-                            )
-                        }
-                        "chatroom" -> {
-                            LogF.d(TAG, "会话类型-chatroom")
-                            conversation = Conversation(
-                                cacheMsg.conversation_id,
-                                MessageType.TYPE_CHATROOM
-                            )
-                        }
-                        else -> {
-                            LogF.d(TAG, "其他类型会话")
-                        }
-                    }
-                    if (null != newMessage && null != conversation) {
+                    val newMessage: Message? = MessageTextUtil.tabToMessage(cacheMsg)
+                    if (null != newMessage) {
                         when (cacheMsg.chat_type) {
                             "text" -> {
                                 val newMessage = MessageText()
@@ -168,10 +159,116 @@ class CacheManager {
         })
     }
 
-    fun addMessage(msg: Message) {
+    fun addMessage(msg: Message): Boolean {
         if (!IMManager.isInstanced()) {
-            return
+            return false
         }
+        if (null == msg.conversation) {
+            LogF.d(TAG, "存储会话 失败 null == conversation")
+            return false
+        }
+        LogF.d(
+            TAG, "存储消息 id=${msg.id} toId=${msg.conversation!!.toId} type=${msg.conversation!!.type}" +
+                    " type=${msg.type} time=${msg.time}"
+        )
+//        val messageTab = MessageTab()
+//        messageTab.user_id = IMManager.instance.getLoginId()
+//        messageTab.msg_id = msg.id
+//        messageTab.raw_id = msg.rawId
+//        messageTab.read = if (msg.acked) 1 else 0
+//        messageTab.send_status =
+//            if (msg.sendStatus == Message.STATUS_SEND) 0 else if (msg.sendStatus == Message.STATUS_SEND_SUC) 1 else 2
+//        messageTab.conversation_id = msg.conversation!!.toId
+//        when (msg.conversation!!.type) {
+//            MessageType.TYPE_P2P -> {
+//                LogF.d(TAG, "会话类型-p2p")
+//                messageTab.type = "p2p"
+//            }
+//            MessageType.TYPE_GROUP -> {
+//                LogF.d(TAG, "会话类型-group")
+//                messageTab.type = "group"
+//            }
+//            MessageType.TYPE_CHATROOM -> {
+//                LogF.d(TAG, "会话类型-chatroom")
+//                messageTab.type = "chatroom"
+//            }
+//            else -> {
+//                LogF.d(TAG, "其他类型会话 不操作")
+//                return false
+//            }
+//        }
+//        when (msg.type) {
+//            MessageContentType.TYPE_TEXT -> {
+//                LogF.d(TAG, "消息类型-text")
+//                messageTab.chat_type = "image"
+//            }
+//            MessageContentType.TYPE_IMAGE -> {
+//                LogF.d(TAG, "消息类型-image")
+//                messageTab.chat_type = "image"
+//            }
+//            MessageContentType.TYPE_VOICE -> {
+//                LogF.d(TAG, "消息类型-voice")
+//                messageTab.chat_type = "voice"
+//            }
+//            MessageContentType.TYPE_VIDEO -> {
+//                LogF.d(TAG, "消息类型-video")
+//                messageTab.chat_type = "video"
+//            }
+//            MessageContentType.TYPE_FILE -> {
+//                LogF.d(TAG, "消息类型-file")
+//                messageTab.chat_type = "file"
+//            }
+//            MessageContentType.TYPE_LOCATION -> {
+//                LogF.d(TAG, "消息类型-location")
+//                messageTab.chat_type = "location"
+//            }
+//            MessageContentType.TYPE_CUSTOM -> {
+//                LogF.d(TAG, "消息类型-custom")
+//                messageTab.chat_type = "custom"
+//            }
+//            else -> {
+//                LogF.d(TAG, "其他消息类型 不操作")
+//                return false
+//            }
+//        }
+//
+//        //查询会话是否已存在
+//        val cacheConversation = SQLite.select()
+//            .from(ConversationTab::class.java)
+//            .where(
+//                ConversationTab_Table.peer.`is`(conversationTab.peer),
+//                ConversationTab_Table.type.`is`(conversationTab.type),
+//                ConversationTab_Table.user_id.`is`(conversationTab.user_id)
+//            ).querySingle()
+        var isSuc = false
+//        if (null != cacheConversation) {
+//            cacheConversation.last_update_time = System.currentTimeMillis()
+//            if (!TextUtils.isEmpty(conversation.title))
+//                cacheConversation.title = conversation.title
+//            if (!TextUtils.isEmpty(conversation.lastMessage))
+//                cacheConversation.last_message = conversation.lastMessage
+//            cacheConversation.unread_count = conversation.unreadNum
+//            if (conversation.lastMessageTime > 0)
+//                cacheConversation.last_message_time = conversation.lastMessageTime
+//            isSuc = cacheConversation.update()
+//            LogF.d(TAG, "存储会话 更新")
+//        } else {
+//            if (!TextUtils.isEmpty(conversation.title))
+//                conversationTab.title = conversation.title
+//            if (!TextUtils.isEmpty(conversation.lastMessage))
+//                conversationTab.last_message = conversation.lastMessage
+//            conversationTab.unread_count = conversation.unreadNum
+//            conversationTab.last_message_time = conversation.lastMessageTime
+//            conversationTab.last_update_time = System.currentTimeMillis()
+//            isSuc = conversationTab.save()
+//            LogF.d(TAG, "存储会话 添加")
+//        }
+//        if (isSuc) {
+//            LogF.d(TAG, "存储会话 成功")
+//        } else {
+//            LogF.d(TAG, "存储会话 失败")
+//        }
+        return isSuc
     }
 
     fun updateMessage(msg: Message, callback: IMCallback?) {

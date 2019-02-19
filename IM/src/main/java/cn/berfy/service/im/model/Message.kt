@@ -21,6 +21,7 @@ abstract class Message {
 
     protected var TAG: String = "IM_消息"
     var id: String = ""//消息id
+    var rawId: String = ""//创建消息的id
     var tagId: Int = 0//标识id
     var acked: Boolean = false//是否已读
     var conversation: Conversation? = null

@@ -1,7 +1,6 @@
 package cn.berfy.sdk.http.model;
 
 import java.util.LinkedHashMap;
-
 import static cn.berfy.sdk.http.model.HttpParams.POST_TYPE.POST_TYPE_JSON;
 
 /**

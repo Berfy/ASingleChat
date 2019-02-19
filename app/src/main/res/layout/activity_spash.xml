@@ -6,6 +6,6 @@
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
               android:gravity="center"
               android:textSize="@dimen/font_30"
-              android:text="ASingleChat by ASingle"/>
+              android:text="欢迎使用ZChat SDK"/>
 
 </android.support.constraint.ConstraintLayout>
